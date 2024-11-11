@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satellite Information</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+    <h1>Satellite Information Entry</h1>
+    <form action="/" method="post">
+        <label for="continent">Continent:</label>
+        <select name="continent" id="continent" required>
+            <option value="North America">North America</option>
+            <option value="Europe">Europe</option>
+            <option value="Asia">Asia</option>
+            <option value="Africa">Africa</option>
+        </select>
+
+        <label for="satellite_type">Satellite Type:</label>
+        <input type="text" id="satellite_type" name="satellite_type" required>
+
+        <label for="cost">Cost (USD):</label>
+        <input type="number" id="cost" name="cost" required>
+
+        <label for="manufacturer">Manufacturer:</label>
+        <input type="text" id="manufacturer" name="manufacturer" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Submitted Satellite Information</h2>
+    {% if satellites %}
+    <table>
+        <thead>
+            <tr>
+                <th>Continent</th>
+                <th>Type</th>
+                <th>Cost (USD)</th>
+                <th>Manufacturer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for satellite in satellites %}
+            <tr>
+                <td>{{ satellite.continent }}</td>
+                <td>{{ satellite.satellite_type }}</td>
+                <td>{{ satellite.cost }}</td>
+                <td>{{ satellite.manufacturer }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No satellite information submitted yet.</p>
+    {% endif %}
+</body>
+</html>
